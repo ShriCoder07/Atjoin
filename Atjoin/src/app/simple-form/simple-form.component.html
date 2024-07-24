@@ -1,0 +1,35 @@
+
+
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" required /><br><br>
+  
+      <label for="photo">Photo:</label>
+      <input id="photo" type="file" (change)="onFileChange($event)" required /> <br><br>
+  
+      <label for="rank">Rank:</label>
+      <select id="rank" formControlName="rank" required>
+        <option value="First Rank">First Rank</option>
+        <option value="Second Rank">Second Rank</option>
+        <option value="Third Rank">Third Rank</option>
+      </select><br><br>
+  
+      <label for="idNumber">ID Number:</label>
+      <input id="idNumber" type="text" formControlName="idNumber" required />
+      <br><br>
+      <button type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+  </div>
+  
+  <div *ngIf="submitted" class="display-area">
+<div>
+      <img [src]="photoURL" alt="User Photo" style="width:100px; height:100px;" />
+    </div>   
+    <div>
+      <p>ID: <span> {{ form.value.idNumber }}</span></p>
+      <p>User Name: <span> {{ form.value.name }}</span></p><br><br>
+    
+      <p>Congratulations!! You have secured <strong>{{ form.value.rank }}</strong></p>
+    </div>
+  </div>
